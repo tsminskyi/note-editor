@@ -1,0 +1,42 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.text-editor {
+  display: flex;
+  width: 600px;
+}
+
+.text-editor ul > li {
+  list-style-type: none;
+}
+
+.text-editor ul {
+  padding: 0;
+  margin: 0;
+}
+
+.text-editor ul li {
+  padding: 5px 0;
+}
+
+.text-editor .text-editor__canvas {
+  border: 1px black solid;
+  min-height: 200px;
+  width: 60%;
+  padding: 5px;
+}
+
+.text-editor .text-editor__controls {
+  margin-left: 10px;
+  width: 40%;
+}
+
+.text-editor .text-editor__controls input {
+  max-width: 100px;
+}
+
+.text-editor .error {
+  color: red;
+}

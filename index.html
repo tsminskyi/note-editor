@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="text-editor">
+
+        <div class="text-editor__canvas" contenteditable="true">
+            <div><br></div>
+        </div>
+        <ul class="text-editor__controls">
+            <li>
+                <label for="text-color">Color</label>
+                <select name="color" id="text-color"></select>
+            </li>
+
+            <li>
+                <label for="font-size">Size(px)</label>
+                <input type="number" min="1" value="14" id="font-size">
+            </li>
+
+            <li>
+                <label for="text-decoration">Text-decoration</label>
+                <select name="text-decoration" id="text-decoration"></select>
+
+            </li>
+
+            <li>
+                <label for="font-weight">Font-weight</label>
+                <select name="font-weight" id="font-weight"></select>
+            </li>
+
+            <li>
+                <label for="letter-spacing">Letter-spacing(px)</label>
+                <input type="number" min="1" id="letter-spacing" value="0">
+            </li>
+
+            <li>
+                <label for="line-height">Line-height</label>
+                <input type="number" min="1" id="line-height" value="0">
+            </li>
+            <li>
+                <button class="apply">Apply</button>
+                <div class="error"></div>
+            </li>
+            <li>
+                <button class="reset">Style reset</button>
+            </li>
+
+        </ul>
+    </div>
+    <script src="./app.js"></script>
+</body>
+
+</html>

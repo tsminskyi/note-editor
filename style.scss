@@ -1,0 +1,36 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.text-editor {
+    display: flex;
+    width: 600px;
+    ul > li {
+        list-style-type: none;
+    }
+    ul {
+        padding: 0;
+        margin: 0;
+        li{
+            padding: 5px 0;
+        }
+    }
+    .text-editor__canvas {
+        border: 1px black solid;
+        min-height: 200px;
+        width: 60%;
+        padding: 5px;
+    }
+
+    .text-editor__controls {
+        margin-left: 10px;
+        width: 40%;
+        input {
+            max-width: 100px;
+        }
+    }
+    .error {
+        color: red;
+    }
+}
