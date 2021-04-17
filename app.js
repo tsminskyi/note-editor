@@ -4,10 +4,18 @@ document.querySelector(".reset").addEventListener("click", () => resetStyle());
 const colorSettings = ["red", "green", "black", "blue"];
 const textDecorationSettings = ["none", "blink", "line-through", "overline", "underline"];
 const fontWeightSettings = ["normal", "lighter", "bold", "bolder", "100", "200", "300", "400", "500", "600", "700", "800", "900"];
+const fontSizeSettings = [8, 9, 10, 11, 12, 14, 18, 24, 36];
+const letterSpacingSettings = ['normal',1,2,3,4,5,6];
 
 const colorSelector = document.querySelector("#text-color")
 const textDecorationSelector = document.querySelector("#text-decoration")
 const fontWeightSelector = document.querySelector("#font-weight")
+const fontSizeSelector = document.querySelector("#font-size")
+const letterSpacingSelector = document.querySelector("#letter-spacing")
+const lineHeightSelector = document.querySelector("#line-height")
+
+const canvas = document.querySelector(".text-editor__canvas")
+const error = document.querySelector('.error');
 
 
 window.onload = setups(), loadContetnEditor();
@@ -25,27 +33,35 @@ function setups() {
     fontWeightSettings.forEach(element => {
         fontWeightSelector.append(new Option(element));
     });
+
+    fontSizeSettings.forEach(element => {
+        fontSizeSelector.append(new Option(element));
+    });
+
+    letterSpacingSettings.forEach(element => {
+        letterSpacingSelector.append(new Option(element));
+    });
 }
 
 
 function loadContetnEditor() {
 
-    document.querySelector(".text-editor__canvas").innerHTML = localStorage.getItem("text-editor")
+    canvas.innerHTML = localStorage.getItem("text-editor")
 
 }
 
 function saveContetnEditor() {
 
-    let lastUPD = document.querySelector(".text-editor__canvas").innerHTML
+    let lastUPD = canvas.innerHTML
     localStorage.setItem("text-editor", lastUPD);
 
 }
 
 function resetStyle() {
 
-    let contentAfterReset = document.querySelector(".text-editor__canvas").innerText;
+    let contentAfterReset = canvas.innerText;
 
-    document.querySelector(".text-editor__canvas").innerText = contentAfterReset;
+    canvas.innerText = contentAfterReset;
 
     saveContetnEditor();
 }
@@ -54,10 +70,11 @@ function changeStyle() {
 
     const rang = getSelection();
 
-    if (rang.rangeCount == 1) {
+    if (rang.rangeCount == 1 && canvas.contains(rang.anchorNode)) {
 
-        document.querySelector('.error').innerText = "";
+        error.innerText = "";
         const boundaries = rang.getRangeAt(0);
+
 
         if (boundaries.startContainer == boundaries.endContainer) {
 
@@ -65,18 +82,18 @@ function changeStyle() {
 
             const elem = document.createElement('span')
             elem.innerText = rang.toString();
-            elem.style.color = document.querySelector("#text-color").value;
-            elem.style.fontSize = document.querySelector("#font-size").value + "px";
-            elem.style.textDecoration = document.querySelector("#text-decoration").value;
-            elem.style.fontWeight = document.querySelector("#font-weight").value;
-            elem.style.letterSpacing = document.querySelector("#letter-spacing").value + "px";
-            elem.style.lineHeight = document.querySelector("#line-height").value;
+            elem.style.color = colorSelector.value;
+            elem.style.fontSize = fontSizeSelector.value + "px";
+            elem.style.textDecoration = textDecorationSelector.value;
+            elem.style.fontWeight = fontWeightSelector.value;
+            elem.style.letterSpacing = letterSpacingSelector.value + "px";
+            elem.style.lineHeight = lineHeightSelector.value;
 
             const arr = text.split("");
 
             arr.splice(boundaries.startOffset, rang.toString().length, elem.outerHTML);
 
-            const elemInsert = document.createElement('span');
+            const elemInsert = document.createElement('p');
             elemInsert.innerHTML = arr.join("");
 
 
@@ -94,9 +111,10 @@ function changeStyle() {
         } else {
 
         }
+
     }
     else {
-        document.querySelector('.error').innerText = "*text is not selected"
+        error.innerText = "*text is not selected"
     }
 
 

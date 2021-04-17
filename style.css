@@ -22,10 +22,16 @@ body {
 }
 
 .text-editor .text-editor__canvas {
+  flex-wrap: wrap;
   border: 1px black solid;
   min-height: 200px;
   width: 60%;
   padding: 5px;
+}
+
+.text-editor .text-editor__canvas p {
+  padding: 0;
+  margin: 0;
 }
 
 .text-editor .text-editor__controls {
@@ -33,8 +39,14 @@ body {
   width: 40%;
 }
 
-.text-editor .text-editor__controls input {
-  max-width: 100px;
+.text-editor .text-editor__controls li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-editor .text-editor__controls li input,
+.text-editor .text-editor__controls li select {
+  width: 100px;
 }
 
 .text-editor .error {
