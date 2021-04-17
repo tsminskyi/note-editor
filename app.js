@@ -69,8 +69,9 @@ function resetStyle() {
 function changeStyle() {
 
     const rang = getSelection();
+    console.log(rang)
 
-    if (rang.rangeCount == 1 && canvas.contains(rang.anchorNode)) {
+    if (!rang.isCollapsed && canvas.contains(rang.anchorNode)) {
 
         error.innerText = "";
         const boundaries = rang.getRangeAt(0);
